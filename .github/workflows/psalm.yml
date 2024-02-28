@@ -34,4 +34,4 @@ jobs:
         run: composer update --prefer-lowest --no-interaction --no-progress --optimize-autoloader --ansi
 
       - name: Run psalm
-        run: php vendor/bin/psalm
+        run: php vendor/bin/psalm --long-progress --no-cache --output-format=compact --report="./checkstyle.xml" --report-show-info=false
