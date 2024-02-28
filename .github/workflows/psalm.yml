@@ -25,4 +25,4 @@ jobs:
         run: composer install
 
       - name: Run psalm
-        run: php vendor/bin/psalm
+        run: php vendor/bin/psalm --long-progress --no-cache --output-format=compact --report="./checkstyle.xml" --report-show-info=false
