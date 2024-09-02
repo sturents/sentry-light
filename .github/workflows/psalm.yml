@@ -4,14 +4,18 @@ on: [push]
 
 jobs:
   build:
-    name: ${{matrix.operating-system}}, PHP ${{ matrix.php }}
+    name: PHP ${{ matrix.php }}, Mode ${{ matrix.mode }}
 
     runs-on: ${{ matrix.operating-system }}
 
     strategy:
       matrix:
         operating-system: [ ubuntu-latest ]
-        php: ['8.1' ]
+        php: ['8.0', '8.3' ]
+        mode: ['stable', 'lowest']
+        exclude:
+          - php: '8.3'
+            mode: 'lowest'
 
     steps:
       - uses: actions/checkout@master
@@ -21,8 +25,13 @@ jobs:
         with:
           php-version: ${{ matrix.php }}
 
-      - name: Install dependencies
-        run: composer install
+      - name: Install dependencies in stable mode
+        if: matrix.mode == 'stable'
+        run: composer update --no-interaction --no-progress --optimize-autoloader --ansi
+
+      - name: Install lowest supported dependencies in lowest mode
+        if: matrix.mode == 'lowest'
+        run: composer update --prefer-lowest --no-interaction --no-progress --optimize-autoloader --ansi
 
       - name: Run psalm
         run: php vendor/bin/psalm
