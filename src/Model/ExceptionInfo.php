@@ -12,17 +12,17 @@ class ExceptionInfo implements JsonSerializable
     /**
      * @var string
      */
-    public $type;
+    public string $type;
 
     /**
      * @var string
      */
-    public $value;
+    public string $value;
 
     /**
      * @var StackTrace
      */
-    public $stacktrace;
+    public StackTrace $stacktrace;
 
     public function __construct(string $type, string $value, StackTrace $stacktrace)
     {

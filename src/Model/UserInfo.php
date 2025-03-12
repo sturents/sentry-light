@@ -10,20 +10,20 @@ class UserInfo
     /**
      * @var string|null the application-specific unique ID of the User
      */
-    public $id;
+    public string|null $id = null;
 
     /**
      * @var string|null the User's application-specific logical username (or display-name, etc.)
      */
-    public $username;
+    public string|null $username = null;
 
     /**
      * @var string|null the User's e-mail address
      */
-    public $email;
+    public string|null $email = null;
 
     /**
      * @var string|null the User's client IP address (dotted notation)
      */
-    public $ip_address;
+    public string|null $ip_address = null;
 }

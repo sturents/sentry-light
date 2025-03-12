@@ -10,12 +10,12 @@ class ExceptionList
     /**
      * @var ExceptionInfo[]
      */
-    public $values = [];
+    public array $values = [];
 
     /**
      * @param ExceptionInfo[] $values
      */
-    public function __construct($values)
+    public function __construct(array $values)
     {
         $this->values = $values;
     }

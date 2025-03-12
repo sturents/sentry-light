@@ -10,12 +10,12 @@ class BrowserContext implements Context
     /**
      * @var string|null Display name of the browser application.
      */
-    public $name;
+    public string|null $name;
 
     /**
      * @var string|null Version string of the browser.
      */
-    public $version;
+    public string|null $version;
 
     /**
      * @param null|string $name

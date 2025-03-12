@@ -28,22 +28,22 @@ class ExceptionReporter implements SentryClientExtension
     /**
      * @var string placeholder for unavailable file-names
      */
-    const NO_FILE = "{no file}";
+    public const NO_FILE = "{no file}";
 
     /**
      * @var string|null root path (with trailing directory-separator)
      */
-    protected $root_path;
+    protected string|null $root_path;
 
     /**
      * @var int maximum length of formatted string-values
      */
-    protected $max_string_length;
+    protected int $max_string_length;
 
     /**
      * @var string[] file-name patterns to filter from stack-traces
      */
-    protected $filters;
+    protected array $filters;
 
     /**
      * Severity of `ErrorException` mappings are identical to the official (2.0) client
@@ -55,7 +55,7 @@ class ExceptionReporter implements SentryClientExtension
      *
      * @link https://docs.sentry.io/clientdev/attributes/#optional-attributes
      */
-    public $error_levels = [
+    public array $error_levels = [
         E_DEPRECATED        => Level::WARNING,
         E_USER_DEPRECATED   => Level::WARNING,
         E_WARNING           => Level::WARNING,
@@ -70,7 +70,7 @@ class ExceptionReporter implements SentryClientExtension
         E_USER_ERROR        => Level::ERROR,
         E_NOTICE            => Level::INFO,
         E_USER_NOTICE       => Level::INFO,
-        E_STRICT            => Level::INFO,
+	    2048                => Level::INFO, // E_STRICT - Deprecated in php8.4
     ];
 
     /**
@@ -85,7 +85,7 @@ class ExceptionReporter implements SentryClientExtension
      * @param int         $max_string_length PHP values longer than this will be truncated
      * @param string[]    $filters           Optional file-name patterns to filter from stack-traces
      */
-    public function __construct(?string $root_path = null, $max_string_length = 200, array $filters = [])
+    public function __construct(?string $root_path = null, int $max_string_length = 200, array $filters = [])
     {
         $this->root_path = $root_path
             ? rtrim($root_path, "/\\") . "/"
@@ -312,15 +312,16 @@ class ExceptionReporter implements SentryClientExtension
             if (isset($entry["class"])) {
                 if (method_exists($entry["class"], $entry["function"])) {
                     return new ReflectionMethod($entry["class"], $entry["function"]);
-                } elseif ("::" === $entry["type"]) {
-                    return new ReflectionMethod($entry["class"], "__callStatic");
-                } else {
-                    return new ReflectionMethod($entry["class"], "__call");
                 }
-            } elseif (function_exists($entry["function"])) {
+				if ("::" === $entry["type"]) {
+                    return new ReflectionMethod($entry["class"], "__callStatic");
+                }
+                return new ReflectionMethod($entry["class"], "__call");
+            }
+			if (function_exists($entry["function"])) {
                 return new ReflectionFunction($entry["function"]);
             }
-        } catch (ReflectionException $exception) {
+        } catch (ReflectionException) {
             return null;
         }
 
@@ -435,8 +436,8 @@ class ExceptionReporter implements SentryClientExtension
 
         if ($class !== "") {
             return $class . $type . $function;
-        } else {
-            return $function;
         }
+
+        return $function;
     }
 }

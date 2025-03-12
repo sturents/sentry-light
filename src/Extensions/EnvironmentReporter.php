@@ -17,12 +17,12 @@ class EnvironmentReporter implements SentryClientExtension
     /**
      * @var RuntimeContext
      */
-    protected $runtime;
+    protected RuntimeContext $runtime;
 
     /**
      * @var OSContext
      */
-    protected $os;
+    protected OSContext $os;
 
     public function __construct()
     {

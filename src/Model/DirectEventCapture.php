@@ -16,12 +16,12 @@ class DirectEventCapture implements EventCapture
     /**
      * @var string|null
      */
-    private $proxy;
+    private string|null $proxy;
 
     /**
      * @var DSN
      */
-    private $dsn;
+    private DSN $dsn;
 
     /**
      * @param DSN         $dsn

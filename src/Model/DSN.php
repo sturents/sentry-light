@@ -14,22 +14,22 @@ class DSN
      *
      * @see getAuthHeader()
      */
-    const AUTH_HEADER_NAME = "X-Sentry-Auth";
+    public const AUTH_HEADER_NAME = "X-Sentry-Auth";
 
     /**
      * @var string Sentry API endpoint
      */
-    private $url;
+    private string $url;
 
     /**
      * @var string X-Sentry authentication header template
      */
-    private $auth_header;
+    private string $auth_header;
 
     /**
      * @var string
      */
-    private $dsn;
+    private string $dsn;
 
     /**
      * @param string $dsn Sentry DSN string

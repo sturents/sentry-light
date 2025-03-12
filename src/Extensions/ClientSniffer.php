@@ -18,7 +18,7 @@ class ClientSniffer implements SentryClientExtension
     /**
      * @var string[] map where regular expression pattern => browser name (or "bot")
      */
-    public $browser_patterns = [
+    public array $browser_patterns = [
         "/AOLShield\/([0-9\._]+)/"                           => "aol",
         "/Edge\/([0-9\._]+)/"                                => "edge",
         "/YaBrowser\/([0-9\._]+)/"                           => "yandexbrowser",
@@ -49,7 +49,7 @@ class ClientSniffer implements SentryClientExtension
     /**
      * @var string[] map where regular expression pattern => OS name
      */
-    public $os_patterns = [
+    public array $os_patterns = [
         "/iP(hone|od|ad)/"                    => "iOS",
         "/Android/"                           => "Android OS",
         "/BlackBerry|BB10/"                   => "BlackBerry OS",

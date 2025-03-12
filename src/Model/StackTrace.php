@@ -12,12 +12,12 @@ class StackTrace implements JsonSerializable
     /**
      * @var StackFrame[]
      */
-    public $frames = [];
+    public array $frames = [];
 
     /**
-     * @var array|null tuple like [int $start_frame, int $end_frame]
+     * @var array{int, int}|null tuple like [int $start_frame, int $end_frame]
      */
-    public $frames_omitted;
+    public array|null $frames_omitted = null;
 
     /**
      * @param StackFrame[] $frames

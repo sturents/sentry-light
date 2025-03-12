@@ -12,24 +12,24 @@ class Breadcrumb implements JsonSerializable
     /**
      * @var int UNIX timestamp
      */
-    public $timestamp;
+    public int $timestamp;
 
     /**
      * @var string Severity level
      *
      * @see Level
      */
-    public $level;
+    public string $level;
 
     /**
      * @var string
      */
-    public $message;
+    public string $message;
 
     /**
      * @var array
      */
-    private $data;
+    private array $data;
 
     public function __construct(int $timestamp, string $level, string $message, array $data)
     {
