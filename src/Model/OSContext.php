@@ -7,17 +7,17 @@ class OSContext implements Context
     /**
      * @var string
      */
-    public $name;
+    public string $name;
 
     /**
      * @var string
      */
-    public $version;
+    public string $version;
 
     /**
      * @var string
      */
-    public $build;
+    public string $build;
 
     public function __construct(string $name, string $version, string $build)
     {

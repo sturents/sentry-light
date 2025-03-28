@@ -19,7 +19,7 @@ class ClientIPDetector implements SentryClientExtension
      *
      * @see applyRequestDetails()
      */
-    public $user_ip_headers;
+    public array $user_ip_headers;
 
     /**
      * @param array|null $user_ip_headers optional map where header-name => regular expression pattern

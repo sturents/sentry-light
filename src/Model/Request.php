@@ -12,37 +12,37 @@ class Request implements JsonSerializable
     /**
      * @var string full URL of the request
      */
-    public $url;
+    public string $url;
 
     /**
      * @var string HTTP method used
      */
-    public $method;
+    public string $method;
 
     /**
      * @var string|null unparsed query string
      */
-    public $query_string;
+    public string|null $query_string = null;
 
     /**
      * @var array cookie values (unparsed, as a string)
      */
-    public $cookies = [];
+    public array $cookies = [];
 
     /**
      * @var string[] map where header-name => header-value
      */
-    public $headers = [];
+    public array $headers = [];
 
     /**
      * @var string|array|null Submitted data in whatever format makes most sense
      */
-    public $data;
+    public string|array|null $data = null;
 
     /**
      * @var string[] map where key => ernvironment value
      */
-    public $env = [];
+    public array $env = [];
 
     /**
      * @param string $url

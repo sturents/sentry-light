@@ -12,42 +12,42 @@ class StackFrame implements JsonSerializable
     /**
      * @var string|null relative (to project root) path/filename
      */
-    public $filename;
+    public string|null $filename;
 
     /**
      * @var string|null absolute path/filename
      */
-    public $abs_path;
+    public string|null $abs_path = null;
 
     /**
      * @var string|null
      */
-    public $function;
+    public string|null $function;
 
     /**
      * @var int|null
      */
-    public $lineno;
+    public int|null $lineno;
 
     /**
      * @var string|null
      */
-    public $context_line;
+    public string|null $context_line = null;
 
     /**
      * @var string[]
      */
-    public $pre_context = [];
+    public array $pre_context = [];
 
     /**
      * @var string[]
      */
-    public $post_context = [];
+    public array $post_context = [];
 
     /**
      * @var string[] map where parameter-name => string representation of value
      */
-    public $vars = [];
+    public array $vars = [];
 
     public function __construct(
         ?string $filename,

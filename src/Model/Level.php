@@ -12,9 +12,9 @@ namespace Kodus\Sentry\Model;
  */
 abstract class Level
 {
-    const FATAL   = "fatal";
-    const ERROR   = "error";
-    const WARNING = "warning";
-    const INFO    = "info";
-    const DEBUG   = "debug";
+    public const FATAL   = "fatal";
+	public const ERROR   = "error";
+	public const WARNING = "warning";
+	public const INFO    = "info";
+	public const DEBUG   = "debug";
 }

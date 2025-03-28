@@ -7,17 +7,17 @@ class RuntimeContext implements Context
     /**
      * @var string
      */
-    public $name;
+    public string $name;
 
     /**
      * @var string
      */
-    public $version;
+    public string $version;
 
     /**
      * @var string
      */
-    public $raw_description;
+    public string $raw_description;
 
     public function __construct(string $name, string $version, string $raw_description)
     {

@@ -16,12 +16,12 @@ class BufferedEventCapture implements EventCapture
     /**
      * @var Event[]
      */
-    private $events = [];
+    private array $events = [];
 
     /**
-     * @var EventCapture|null
+     * @var EventCapture
      */
-    private $destination;
+    private EventCapture $destination;
 
     /**
      * @param EventCapture $destination the destination `EventCapture` implementation to `flush()` to
